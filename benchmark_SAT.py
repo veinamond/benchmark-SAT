@@ -192,6 +192,8 @@ print("Running the {} track".format(track))
 print("Will launch computations for {} processes".format(", ".join([str(u) for u in benchmarking_np])))
 with open(logfile,'a') as outfile:
     outfile.write("Runing {} track: {}\n".format(track,", ".join([str(u) for u in benchmarking_np])))
+if not os.path.exists(outs_path):
+    os.makedirs(outs_path)
 res = dict()
 for u in benchmarking_np:    
     res[u] = run_benchmark(u, cnffile)
