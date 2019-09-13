@@ -67,7 +67,7 @@ def launch_solver_rc1(input_data):
         for line in output:   
             outfile.write(line+"\n")
     res = t2-t1  
-    print("Process {} finished solving {} : {} in time {}".format(str(index1),cnf_file.split("/")[-1],status,str(res)))  
+   # print("Process {} finished solving {} : {} in time {}".format(str(index1),cnf_file.split("/")[-1],status,str(res)))  
     return res
 
 def run_benchmark(number_of_processes, cnf):    
@@ -92,6 +92,7 @@ def run_benchmark(number_of_processes, cnf):
 
     with open(logfile,'a') as outfile:
         outfile.write("Results for cnf {} and {} process(es): {} \n".format(cnf, str(number_of_processes),", ".join([str(u) for u in results])))
+    print("Results for cnf {} and {} process(es): {} \n".format(cnf, str(number_of_processes),", ".join([str(u) for u in results])))
     return results
           
 #run_benchmark(1, PHP11cnf)
@@ -192,12 +193,11 @@ print("Running the {} track".format(track))
 print("Will launch computations for {} processes".format(", ".join([str(u) for u in benchmarking_np])))
 with open(logfile,'a') as outfile:
     outfile.write("Runing {} track: {}\n".format(track,", ".join([str(u) for u in benchmarking_np])))
+res = dict()
 if not os.path.exists(outs_path):
     os.makedirs(outs_path)
-res = dict()
 for u in benchmarking_np:    
     res[u] = run_benchmark(u, cnffile)
-
 
 
 
